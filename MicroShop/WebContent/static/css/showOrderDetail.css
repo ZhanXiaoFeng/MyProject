@@ -1,0 +1,12 @@
+@charset "UTF-8";
+li{
+	float:left;
+	list-style-type: none;
+	margin-left:0px;
+}
+ul{
+	overflow: hidden;
+}
+#order{
+	width:1024px;
+}

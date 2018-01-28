@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.GoodsMapper">
+	<resultMap type="entity.Goods" id="goodsResult">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="imgs" column="imgs" />
+		<result property="tags" column="tags" />
+		<result property="color" column="colors" />
+		<result property="categoryId" column="category_id" />
+		<result property="price1" column="price1" />
+		<result property="price2" column="price2" />
+		<result property="xiaoLiang" column="xiaoliang_id" />
+		<result property="source" column="source" />
+		<result property="baoYou" column="baoyou" />
+		<result property="display" column="display" />
+		<result property="level_" column="level_" />
+		<result property="kuCun" column="kucun" />
+		<result property="intro" column="intro" />
+		<association  property="category" javaType="Category">
+			<result property="id" column="cid"/>
+			<result property="name" column="cname" />
+			<result property="display" column="cdisplay" />
+			<result property="intro" column="cintro" />
+		</association>
+	</resultMap>
+
+	<select id="selectAllByCategory" parameterType="Goods" resultMap="goodsResult">
+		select
+		c.id cid,
+		c.NAME cname,
+		c.display cdisplay,
+		c.intro cintro,
+		g.*
+		from tb_goods g inner join
+		tb_category c on c.id=g.category_id where g.category_id=#{categoryId}
+	</select>
+
+
+	<select id="selectById" parameterType="Int" resultMap="goodsResult">
+		select *
+		from tb_goods
+		where id=#{id}
+	</select>
+
+	<select id="selectCondition" parameterType="Goods" resultMap="goodsResult">
+		select * from tb_goods
+		<where>
+			<if test="name != null"> name=#{name} </if>
+			<if test="tags != null"> and tags=#{tags}</if>
+			<if test="color != null"> and colors=#{color}</if>
+			<if test="source != null"> and source=#{source}</if>
+			<if test="baoYou != null"> and baoyou=#{baoYou}</if>
+		</where>
+		order by level_ desc
+		<trim prefix="WHERE" prefixOverrides="AND"></trim>
+	</select>
+
+	<select id="selectAll" parameterType="Goods" resultMap="goodsResult">
+		select *
+		from tb_goods
+	</select>
+
+	<sql id="key">
+		<trim suffixOverrides=",">
+			<if test="id!=null"> id,</if>
+			<if test="name!=null"> name,</if>
+			<if test="imgs!=null"> imgs,</if>
+			<if test="tags!=null"> tags,</if>
+			<if test="color!=null"> colors,</if>
+			<if test="categoryId!=null"> category_id,</if>
+			<if test="price1!=null"> price1,</if>
+			<if test="price2!=null"> price2,</if>
+			<if test="xiaoLiang!=null"> xiaoliang_id,</if>
+			<if test="source!=null"> source,</if>
+			<if test="baoYou!=null"> baoyou,</if>
+			<if test="display!=null"> display,</if>
+			<if test="level_!=null"> level_,</if>
+			<if test="kuCun!=null"> kucun,</if>
+			<if test="intro!=null"> intro,</if>
+		</trim>
+	</sql>
+	<sql id="value">
+		<trim suffixOverrides=",">
+			<if test="id!=null"> #{id},</if>
+			<if test="name!=null"> #{name},</if>
+			<if test="imgs!=null"> #{imgs},</if>
+			<if test="tags!=null"> #{tags},</if>
+			<if test="color!=null"> #{color},</if>
+			<if test="categoryId!=null"> #{categoryId},</if>
+			<if test="price1!=null"> #{price1},</if>
+			<if test="price2!=null"> #{price2},</if>
+			<if test="xiaoLiang!=null"> #{xiaoLiang},</if>
+			<if test="source!=null"> #{source},</if>
+			<if test="baoYou!=null"> #{baoYou},</if>
+			<if test="display!=null"> #{display},</if>
+			<if test="level_!=null"> #{level_},</if>
+			<if test="kuCun!=null"> #{kuCun},</if>
+			<if test="intro!=null"> #{intro},</if>
+		</trim>
+	</sql>
+	<insert id="insert" parameterType="Goods">
+		insert into tb_goods(
+		<include refid="key" />
+		)
+		values(
+		<include refid="value" />
+		)
+		<!-- values(#{id},#{categoryId}) -->
+	</insert>
+
+	<delete id="delete" parameterType="int">
+		delete from tb_goods
+		where
+		id=#{id}
+	</delete>
+
+	<update id="updateCondition" parameterType="Goods">
+		update tb_goods
+		<set>
+			<trim suffixOverrides=",">
+				<if test="name != null"> name=#{name}, </if>
+				<if test="tags != null"> tags=#{tags},</if>
+				<if test="color != null"> colors=#{color},</if>
+				<if test="categoryId != null"> category_id=#{categoryId},</if>
+				<if test="price1 != null"> price1=#{price1},</if>
+				<if test="price2 != null"> price2=#{price2},</if>
+				<if test="xiaoLiang != null"> xiaoliang_id=#{xiaoLiang},</if>
+				<if test="source != null"> source=#{source},</if>
+				<if test="baoYou != null"> baoyou=#{baoYou},</if>
+				<if test="display != null"> display=#{display},</if>
+				<if test="level_!= null"> level_=#{level_},</if>
+				<if test="kuCun!= null"> kucun=#{kuCun},</if>
+				<if test="intro!= null"> intro=#{intro},</if>
+			</trim>
+		</set>
+		where id=#{id}
+	</update>
+</mapper>
