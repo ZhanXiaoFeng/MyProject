@@ -1,0 +1,115 @@
+* {
+	margin: 0 auto;
+	padding: 0;
+}
+
+body {
+	font-size: 12px;
+	font-family: "Î¢ÈíÑÅºÚ";
+	color: #999966;
+}
+
+img {
+	border: none;
+}
+
+.banner .t_desc {
+	margin-top:-12px;
+	padding-bottom:14px;
+	line-height: 20px;
+	text-align: center;
+	font-size: 18px;
+	color: #fff;
+}
+
+.banner {
+	width: 100%;
+	height: 315px;
+	background: url("../images/banner.jpg");
+	background-size: cover;
+	padding-top: 30px;
+}
+
+.banner .b_box {
+	width: 980px;
+	height: 285px;
+	margin: 0 auto;
+}
+
+.banner .b_box .b_view {
+	float: left;
+	border-radius: 15px;
+	overflow: hidden;
+	position: relative
+}
+
+.banner .b_box 
+		.b_result {
+	width: 453px;
+	height: 285px;
+	background: url("../images/result.png") no-repeat;
+	background-repeat: no-repeat;
+	background-size: cover;
+	float: right;
+	border-radius: 15px;
+	position: relative;
+}
+
+.banner .b_box .b_result
+		span {
+	position: absolute;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.banner .b_box .b_result #name {
+	top: 40px;
+	left: 90px;
+}
+
+.banner .b_box .b_result #sex {
+	top: 79px;
+	left: 90px;
+}
+
+.banner .b_box .b_result #nation {
+	top: 79px;
+	left: 194px;
+}
+
+.banner .b_box .b_result #year {
+	top: 115px;
+	left: 90px;
+}
+
+.banner .b_box .b_result #month {
+	top: 115px;
+	left: 168px;
+}
+
+.banner .b_box .b_result #day {
+	top: 115px;
+	left: 214px;
+}
+
+.banner .b_box .b_result #addr {
+	top: 156px;
+	left: 90px;
+}
+
+.banner .b_box .b_result #num {
+	top: 255px;
+	left: 156px;
+}
+
+.banner .b_box .b_view .b_scan {
+	width: 100%;
+	height: 100%;
+	background: url("../images/intro.png");
+	position: absolute;
+	background-size: cover;
+}
+
+#clear {
+	clear: both;
+}

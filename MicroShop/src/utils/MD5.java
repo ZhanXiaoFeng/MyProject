@@ -45,7 +45,7 @@ public class MD5 {
 	}
 
 	public static void main(String[] args) {
-		String md5Encode = MD5Encode("admin");
+		String md5Encode = MD5Encode("123456");
 		System.out.println(md5Encode);
 	}
 }
