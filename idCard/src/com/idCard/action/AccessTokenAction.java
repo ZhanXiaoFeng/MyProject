@@ -23,9 +23,9 @@ public class AccessTokenAction {
 	 */
 	public static String getAuth() {
 		// ������ȡ�� API Key ����Ϊ��ע���
-		String clientId = "Z8VQSDYxu1ijgx8BOyR1Glp5";
+		String clientId = "Shj54FrnaKjzWhcGGSuNrbAG";
 		// ������ȡ�� Secret Key ����Ϊ��ע���
-		String clientSecret = "R1HlnQrgtXUshlqUKAaHcRG5YBtVGD5P";
+		String clientSecret = "pzmkYtbuOpOkAy5QjcHvmt9TTbpgzdir";
 		return getAuth(clientId, clientSecret);
 	}
 
