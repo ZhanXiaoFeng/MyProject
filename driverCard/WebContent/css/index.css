@@ -1,0 +1,122 @@
+* {
+	margin: 0 auto;
+	padding: 0;
+}
+
+body {
+	font-size: 12px;
+	font-family: "Î¢ÈíÑÅºÚ";
+	color: #999966;
+}
+
+img {
+	border: none;
+}
+
+.banner .t_desc {
+	margin-top:-12px;
+	padding-bottom:14px;
+	line-height: 20px;
+	text-align: center;
+	font-size: 18px;
+	color: #fff;
+}
+
+.banner {
+	width: 100%;
+	height: 315px;
+	background: url("../images/banner.jpg"); 
+	background-size: cover;
+	padding-top: 30px;
+}
+
+.banner .b_box {
+	width: 980px;
+	height: 285px;
+	margin: 0 auto;
+}
+
+.banner .b_box .b_view {
+	float: left;
+	border-radius: 15px;
+	overflow: hidden;
+	position: relative
+}
+
+.banner .b_box 
+		.b_result {
+	width: 453px;
+	height: 285px;
+	background: url("../images/source.png"); 
+	background-repeat: no-repeat;
+	background-size: cover;
+	float: right;
+	border-radius: 15px;
+	position: relative;
+}
+
+.banner .b_box .b_result
+		span {
+	position: absolute;
+	font-size: 18px;
+	font-weight: bold;
+	color: #122429;
+	font-family: '¿¬Ìå';
+}
+
+.banner .b_box .b_result #zhenghao {
+	top: 51px;
+	left: 185px;
+}
+
+.banner .b_box .b_result #name {
+	top: 79px;
+	left: 90px;
+}
+
+.banner .b_box .b_result #sex {
+	top: 79px;
+	left: 226px;
+}
+
+.banner .b_box .b_result #country {
+	top: 79px;
+	left: 334px;
+}
+
+.banner .b_box .b_result #addr {
+	top: 107px;
+	left: 90px;
+}
+
+.banner .b_box .b_result #birthday {
+	top: 145px;
+	left: 116px;
+}
+
+.banner .b_box .b_result #date1 {
+	top: 174px;
+	left: 152px;
+}
+
+.banner .b_box .b_result #driver {
+	top: 202px;
+	left: 121px;
+}
+
+.banner .b_box .b_result #date2 {
+	top: 229px;
+	left: 121px;
+}
+
+.banner .b_box .b_view .b_scan {
+	width: 100%;
+	height: 100%;
+	background: url("../images/intro.png");
+	position: absolute;
+	background-size: cover;
+}
+
+#clear {
+	clear: both;
+}
