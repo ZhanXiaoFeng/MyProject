@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.CustomerMapper">
+	<resultMap id="customerResultMap" type="Customer">
+		<id column="ID" property="id" />
+		<result column="USERNAME" property="username" />
+		<result column="PASSWORD" property="password" />
+		<result column="NICKNAME" property="nickname" />
+		<result column="IMGURL" property="imgurl" />
+		<result column="PHONE" property="phone" />
+		<result column="EMAIL" property="email" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ID, USERNAME, PASSWORD, NICKNAME, IMGURL, PHONE, EMAIL
+	</sql>
+
+	<!-- 通过id查询顾客信息 -->
+	<select id="selectCustById" parameterType="Customer" resultMap="customerResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TB_CUSTOMER
+		where ID = #{id}
+	</select>
+
+	<!-- 通过姓名密码查询顾客信息 -->
+	<select id="selectByNameAndPwd" parameterType="Customer"
+		resultMap="customerResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TB_CUSTOMER
+		<where>
+			<if test="username!=null">username=#{username}</if>
+			<if test="password!=null">and password=#{password}</if>
+		</where>
+	</select>
+	<!-- 查询所有顾客信息 -->
+	<select id="selectAllCust" parameterType="Customer" resultMap="customerResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TB_CUSTOMER
+	</select>
+
+	<!-- 添加顾客信息 -->
+	<insert id="insertCust" parameterType="Customer">
+		insert into
+		TB_CUSTOMER
+		(ID, USERNAME, PASSWORD, NICKNAME, IMGURL, PHONE,
+		EMAIL)
+		values (#{id,jdbcType=NUMERIC}, #{username,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR},
+		#{nickname,jdbcType=VARCHAR}, #{imgurl,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+		#{email,jdbcType=VARCHAR})
+	</insert>
+
+	<!--通过id更新顾客信息 -->
+	<update id="updateByCondition">
+		update TB_CUSTOMER
+		<set>
+			<if test="username != null">
+				USERNAME = #{username},
+			</if>
+			<if test="password != null">
+				PASSWORD = #{password},
+			</if>
+			<if test="nickname != null">
+				NICKNAME = #{nickname},
+			</if>
+			<if test="imgurl != null">
+				IMGURL = #{imgurl},
+			</if>
+			<if test="phone != null">
+				PHONE = #{phone},
+			</if>
+			<if test="email != null">
+				EMAIL = #{email},
+			</if>
+		</set>
+		where ID = #{id}
+	</update>
+
+	<!-- 删除顾客信息 -->
+	<delete id="deleteCustById">
+		delete from TB_CUSTOMER
+		where ID = #{id}
+	</delete>
+
+</mapper>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.OrderItemMapper">
+	<resultMap id="orderItemResultMap" type="Orderitem">
+		<id column="ID" property="id" />
+		<id column="AMOUNT" property="amount" />
+		<result column="GOODS_ID" property="goodsId" />
+		<result column="PRICE" property="price" />
+		<result column="ORDER_ID" property="orderId" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ID, AMOUNT, GOODS_ID, PRICE, ORDER_ID
+	</sql>
+
+	<select id="selectOrderItemById" resultMap="orderItemResultMap"
+		parameterType="OrderItem">
+		select
+		<include refid="Base_Column_List" />
+		from TB_ORDERITEM
+		where ID = #{id}
+
+	</select>
+
+	<select id="selectAllOrderItem" resultMap="orderItemResultMap"
+		parameterType="OrderItem">
+		select
+		<include refid="Base_Column_List" />
+		from TB_ORDERITEM
+
+	</select>
+
+	<delete id="deleteOrderItem" parameterType="OrderItem">
+		delete from
+		TB_ORDERITEM
+	</delete>
+
+	<insert id="insertOrderItem" parameterType="OrderItem">
+		insert into
+		TB_ORDERITEM (ID, AMOUNT, GOODS_ID,
+		PRICE, ORDER_ID)
+		values
+		(#{id},
+		#{amount}, #{goodsId},
+		#{price}, #{orderId})
+	</insert>
+
+
+	<update id="updateOrderNum" parameterType="OrderItem">
+		update TB_ORDERITEM
+		<set>
+			<if test="goodsId != null">
+				GOODS_ID = #{goodsId},
+			</if>
+			<if test="price != null">
+				PRICE = #{price},
+			</if>
+			<if test="orderId != null">
+				ORDER_ID = #{orderId},
+			</if>
+			<if test="amount!=NULL">
+				AMOUNT = #{amount}
+			</if>
+		</set>
+		where ID = #{id}
+	</update>
+</mapper>

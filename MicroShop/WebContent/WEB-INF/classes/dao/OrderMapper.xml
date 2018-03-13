@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.OrderMapper">
+	<resultMap id="OrderResultMap" type="Order">
+		<id column="ID" property="id" jdbcType="DECIMAL" />
+		<result column="STATUS" property="status" jdbcType="DECIMAL" />
+		<result column="PRICE" property="price" jdbcType="DECIMAL" />
+		<result column="PAYMETHOD" property="paymethod" jdbcType="VARCHAR" />
+		<result column="ADDR_ID" property="addrId" jdbcType="DECIMAL" />
+		<result column="CUSTOMER_ID" property="customerId" jdbcType="DECIMAL" />
+	</resultMap>
+	<resultMap id="OrderResultAllMap" type="Order">
+		<id column="ID" property="id" jdbcType="DECIMAL" />
+		<result column="STATUS" property="status" jdbcType="DECIMAL" />
+		<result column="PRICE" property="price" jdbcType="DECIMAL" />
+		<result column="PAYMETHOD" property="paymethod" jdbcType="VARCHAR" />
+		<result column="ADDR_ID" property="addrId" jdbcType="DECIMAL" />
+		<result column="CUSTOMER_ID" property="customerId" jdbcType="DECIMAL" />
+		<association property="customer" javaType="Customer">
+			<id column="ID" jdbcType="DECIMAL" property="id" />
+			<result column="USERNAME" jdbcType="VARCHAR" property="username" />
+			<result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+			<result column="NICKNAME" jdbcType="VARCHAR" property="nickname" />
+			<result column="IMGURL" jdbcType="VARCHAR" property="imgurl" />
+			<result column="PHONE" jdbcType="VARCHAR" property="phone" />
+			<result column="EMAIL" jdbcType="VARCHAR" property="email" />
+		</association>
+		<association property="addrs" javaType="Addr">
+			<id column="ID" jdbcType="DECIMAL" property="id" />
+			<result column="ADDR" jdbcType="VARCHAR" property="addr" />
+			<result column="AREA" jdbcType="VARCHAR" property="area" />
+			<result column="NAME" jdbcType="VARCHAR" property="name" />
+			<result column="PHONE" jdbcType="VARCHAR" property="phone" />
+			<result column="DEF" jdbcType="DECIMAL" property="def" />
+			<result column="REMARK" jdbcType="VARCHAR" property="remark" />
+			<result column="CUSTOMER_ID" jdbcType="DECIMAL" property="customerId" />
+		</association>
+		<collection property="orderItems" ofType="OrderItem">
+			<id column="ID" jdbcType="DECIMAL" property="id" />
+			<result column="GOODS_ID" jdbcType="DECIMAL" property="id" />
+			<result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+			<result column="PRICE" jdbcType="DECIMAL" property="price" />
+			<result column="ORDER_ID" jdbcType="DECIMAL" property="orderId" />
+			<association property="goods" javaType="Goods">
+				<id column="ID" jdbcType="DECIMAL" property="id" />
+				<result column="NAME" jdbcType="VARCHAR" property="name" />
+				<result column="IMGS" jdbcType="VARCHAR" property="imgs" />
+				<result column="TAGS" jdbcType="VARCHAR" property="tags" />
+				<result column="COLORS" jdbcType="VARCHAR" property="color" />
+				<result column="CATEGORY_ID" jdbcType="DECIMAL" property="categoryId" />
+				<result column="PRICE1" jdbcType="DECIMAL" property="price1" />
+				<result column="PRICE2" jdbcType="DECIMAL" property="price2" />
+				<result column="XIAOLIANG_ID" jdbcType="DECIMAL" property="xiaoLiang" />
+				<result column="SOURCE" jdbcType="VARCHAR" property="source" />
+				<result column="BAOYOU" jdbcType="DECIMAL" property="baoYou" />
+				<result column="DISPLAY" jdbcType="DECIMAL" property="display" />
+				<result column="LEVEL_" jdbcType="DECIMAL" property="level_" />
+				<result column="KUCUN" jdbcType="DECIMAL" property="kuCun" />
+				<result column="INTRO" jdbcType="VARCHAR" property="intro" />
+				<association property="category" javaType="Category">
+					<id column="ID" jdbcType="DECIMAL" property="id" />
+					<result column="NAME" jdbcType="VARCHAR" property="name" />
+					<result column="DISPLAY" jdbcType="DECIMAL" property="display" />
+					<result column="INTRO" jdbcType="VARCHAR" property="intro" />
+				</association>
+			</association>
+		</collection>
+	</resultMap>
+	<select id="selectByPrimaryKey" parameterType="Order" resultMap="OrderResultMap">
+		select * from TB_ORDER
+		where customer_id=#{id}
+	</select>
+	<select id="selectOrderById" parameterType="int" resultMap="OrderResultMap">
+		select * from TB_ORDER
+		where id=#{id}
+	</select>
+	<select id="selectOrderByStatus" parameterType="Order"
+		resultMap="OrderResultMap">
+		select * from TB_ORDER
+		where status=#{status}
+	</select>
+	<!-- 查看我的购物车 -->
+	<select id="showCartByCustidAndStatus" parameterType="int"
+		resultMap="OrderResultMap">
+		select * from TB_ORDER
+		where customer_id=#{id}
+		and status=0
+	</select>
+	<insert id="insertOrder" parameterType="Order">
+		insert into
+		tb_order(status,price,paymethod,addr_id,customer_id)
+		values(#{status},#{price},#{paymethod},#{addrId},#{customerId})
+	</insert>
+	<!-- 更新指定ID的订单 -->
+	<update id="updateByPrimaryKeySelective" parameterType="Order">
+		update
+		tb_order set
+		status=#{status},price=#{price},paymethod=#{paymethod},addr_id=#{addrId},customer_id=#{customerId}
+		where id=#{id}
+	</update>
+	<!-- 更新指定ID的订单的状态 -->
+	<update id="updateOrderStatusById" parameterType="Order">
+		update
+		tb_order
+		set
+		tb_order.status=#{status}
+		where tb_order.id=#{id}
+	</update>
+	<!-- 删除指定ID的订单 -->
+	<delete id="deleteByPrimaryKey" parameterType="int">
+		delete tb_order
+		where id=#{id}
+	</delete>
+	<!-- 根据用户ID查询订单的详细情况 -->
+	<select id="selectAllByUserId" parameterType="Order" resultMap="OrderResultAllMap">
+		select * from
+		tb_customer,tb_order,tb_orderitem,tb_goods,tb_addr
+		where
+		tb_order.customer_id=tb_customer.id
+		and
+		tb_orderitem.order_id=tb_order.id
+		and tb_order.addr_id=tb_addr.id
+		and
+		tb_orderitem.goods_id=tb_goods.id
+		and
+		tb_order.id=#{id}
+	</select>
+</mapper>

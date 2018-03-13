@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.AdminMapper">
+	<cache type="org.mybatis.caches.ehcache.LoggingEhcache">
+		<property name="timeToIdleSeconds" value="3600" /><!--1 hour -->
+		<property name="timeToLiveSeconds" value="3600" /><!--1 hour -->
+		<property name="maxEntriesLocalHeap" value="1000" />
+		<property name="maxEntriesLocalDisk" value="10000000" />
+		<property name="memoryStoreEvictionPolicy" value="LRU" />
+	</cache>
+	<resultMap id="adminResultMap" type="Admin">
+		<id column="ID" property="id" />
+		<result column="USERNAME" property="username" />
+		<result column="PASSWORD" property="password" />
+		<result column="DEGREE" property="degree" />
+		<result column="EMAIL" property="email" />
+		<result column="GENDER" property="gender" />
+		<result column="IMG_URL" property="imgUrl" />
+		<result column="PHONE" property="phone" />
+		<result column="REAL_NAME" property="realName" />
+		<result column="SCHOOL" property="school" />
+	</resultMap>
+
+	<!-- 查询个人信息 -->
+	<select id="selectByCondition" resultMap="adminResultMap"
+		parameterType="int">
+		select *
+		from TB_ADMIN where id=#{id}
+		<!-- <where> <if test="id!= null"> ID=#{id} </if> <if test="username != 
+			null"> and USERNAME = #{username}, </if> <if test="password != null"> and 
+			PASSWORD = #{password}, </if> <if test="degree != null"> and DEGREE = #{degree}, 
+			</if> <if test="email != null"> and EMAIL = #{email}, </if> <if test="gender 
+			!= null"> and GENDER = #{gender}, </if> <if test="imgUrl != null"> and IMG_URL 
+			= #{imgUrl}, </if> <if test="phone != null"> and PHONE = #{phone}, </if> 
+			<if test="realName != null"> and REAL_NAME = #{realName}, </if> <if test="school 
+			!= null"> and SCHOOL = #{school} </if> </where> -->
+	</select>
+
+	<!-- 管理员登录 -->
+	<select id="login" resultMap="adminResultMap" parameterType="Admin">
+		select *
+		from TB_ADMIN
+		where USERNAME=#{username} and
+		PASSWORD=#{password}
+	</select>
+
+	<!-- 更新个人信息 -->
+	<update id="updateById" parameterType="Admin">
+		update TB_ADMIN
+		<set>
+			<if test="username != null">
+				USERNAME = #{username},
+			</if>
+			<if test="password != null">
+				PASSWORD = #{password},
+			</if>
+			<if test="degree != null">
+				DEGREE = #{degree},
+			</if>
+			<if test="email != null">
+				EMAIL = #{email},
+			</if>
+			<if test="gender != null">
+				GENDER = #{gender},
+			</if>
+			<if test="imgUrl != null">
+				IMG_URL = #{imgUrl},
+			</if>
+			<if test="phone != null">
+				PHONE = #{phone},
+			</if>
+			<if test="realName != null">
+				REAL_NAME = #{realName},
+			</if>
+			<if test="school != null">
+				SCHOOL = #{school},
+			</if>
+		</set>
+		where ID = #{id}
+	</update>
+
+</mapper>

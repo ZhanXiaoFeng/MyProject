@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 定义命名空间 -->
+<mapper namespace="dao.AddrMapper">
+	<!-- 数据库属性与java对象匹配 -->
+	<cache type="org.mybatis.caches.ehcache.LoggingEhcache">
+		<property name="timeToIdleSeconds" value="3600" /><!--1 hour -->
+		<property name="timeToLiveSeconds" value="3600" /><!--1 hour -->
+		<property name="maxEntriesLocalHeap" value="1000" />
+		<property name="maxEntriesLocalDisk" value="10000000" />
+		<property name="memoryStoreEvictionPolicy" value="LRU" />
+	</cache>
+	<resultMap id="addrResultMap" type="Addr">
+		<id column="ID" property="id" />
+		<result column="ADDR" property="addr" />
+		<result column="AREA" property="area" />
+		<result column="NAME" property="name" />
+		<result column="PHONE" property="phone" />
+		<result column="DEF" property="def" />
+		<result column="REMARK" property="remark" />
+		<result column="CUSTOMER_ID" property="customerId" />
+	</resultMap>
+
+	<!-- 添加地址信息 -->
+	<insert id="insert" parameterType="Addr">
+		insert into
+		TB_ADDR(ID,ADDR,AREA,NAME, PHONE, DEF, REMARK,CUSTOMER_ID)
+		values(#{id},#{addr},#{area},#{name},#{phone},
+		#{def},#{remark},#{customerId})
+	</insert>
+
+	<!-- 条件添加地址信息 -->
+	<insert id="insertCondition" parameterType="Addr">
+		insert into TB_ADDR
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="addr != null">
+				ADDR,
+			</if>
+			<if test="area != null">
+				AREA,
+			</if>
+			<if test="name != null">
+				NAME,
+			</if>
+			<if test="phone != null">
+				PHONE,
+			</if>
+			<if test="def != null">
+				DEF,
+			</if>
+			<if test="remark != null">
+				REMARK,
+			</if>
+			<if test="customerId != null">
+				CUSTOMER_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id},
+			</if>
+			<if test="addr != null">
+				#{addr},
+			</if>
+			<if test="area != null">
+				#{area},
+			</if>
+			<if test="name != null">
+				#{name},
+			</if>
+			<if test="phone != null">
+				#{phone},
+			</if>
+			<if test="def != null">
+				#{def},
+			</if>
+			<if test="remark != null">
+				#{remark},
+			</if>
+			<if test="customerId != null">
+				#{customerId},
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 通过指定id查询地址信息 -->
+	<select id="selectById" resultMap="addrResultMap" parameterType="Addr">
+		select * from TB_ADDR
+		where ID=#{id}
+	</select>
+
+
+	<!-- 查找所有地址信息 -->
+	<select id="selectAll" resultMap="addrResultMap" parameterType="Addr">
+		select * from tb_Addr order by tb_addr.id
+	</select>
+	<!-- 通过顾客ID查找地址 -->
+	<select id="selectByCustomerId" resultMap="addrResultMap"
+		parameterType="Addr">
+		select * from TB_ADDR
+		where ID=#{id}
+	</select>
+	<!-- 条件更新地址信息 -->
+	<update id="updateByCondition" parameterType="Addr">
+		update TB_ADDR
+		<set>
+			<if test="addr != null">
+				ADDR = #{addr},
+			</if>
+			<if test="area != null">
+				AREA = #{area},
+			</if>
+			<if test="name != null">
+				NAME = #{name},
+			</if>
+			<if test="phone != null">
+				PHONE = #{phone},
+			</if>
+			<if test="def != null">
+				DEF = #{def},
+			</if>
+			<if test="remark != null">
+				REMARK = #{remark},
+			</if>
+			<if test="customerId != null">
+				CUSTOMER_ID = #{customerId},
+			</if>
+		</set>
+		where ID = #{id}
+	</update>
+
+	<!-- 通过id删除地址信息 -->
+	<delete id="deleteById" parameterType="int">
+		delete from
+		TB_ADDR
+		where ID
+		= #{id}
+	</delete>
+
+</mapper>
