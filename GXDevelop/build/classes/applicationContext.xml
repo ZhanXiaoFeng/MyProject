@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<!-- 加载属性文件 -->
+	<context:property-placeholder location="classpath:db.properties" />
+	<!-- 配置数据源 -->
+	<bean id="dataSource" destroy-method="close"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="maxPoolSize" value="40" />
+		<property name="minPoolSize" value="1" />
+		<!--初始化连接数 -->
+		<property name="initialPoolSize" value="1" />
+		<!--连接的最大空闲时间，超时的连接将被丢弃，单位：秒 -->
+		<property name="maxIdleTime" value="60" />
+		<!--没有连接可用时，等待连接的时间，单位：毫秒 -->
+		<property name="checkoutTimeout" value="2000" />
+	</bean>
+	<!-- 配置sqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+	</bean>
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- 事务规则 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="query*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="select*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="login" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="search*" propagation="SUPPORTS" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 配置切面 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* service.*.*(..))"
+			id="pointCut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointCut" />
+	</aop:config>
+
+	<!-- 使用MapperScannerConfigurer简化装置 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>
+
+	<!-- 异常处理 -->
+	<bean
+	class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	<!-- 定义默认的异常处理页面，当该异常类型的注册时使用 -->
+	<property name="defaultErrorView" value="error"></property>
+	<!-- 定义异常处理页面用来获取异常信息的变量名，默认名为exception -->
+	<property name="exceptionAttribute" value="ex"></property>
+	<!-- 定义需要特殊处理的异常，用类名或完全路径名作为key，异常也页名作为值 -->
+	<property name="exceptionMappings">
+		<props>
+			<prop key="cn.basttg.core.exception.BusinessException">error-business</prop>
+			<prop key="cn.basttg.core.exception.ParameterException">error-parameter</prop>
+			<!-- 这里还可以继续扩展对不同异常类型的处理 -->
+		</props>
+	</property>
+</bean>
+
+
+</beans>

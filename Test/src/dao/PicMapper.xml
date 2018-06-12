@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.PicMapper">
+	<resultMap type="entity.Pic" id="picResult">
+		<id property="id" column="id"></id>
+		<result property="name" column="name" />
+		<result property="imgs" column="imgs" />
+		<result property="intro" column="intro" />
+		<result property="categoryId" column="categoryId" />
+		<result property="display" column="display" />
+		<result property="level" column="level" />
+		<association property="category" javaType="Category">
+			<result property="id" column="id" />
+			<result property="name" column="name" />
+			<result property="display" column="display" />
+			<result property="intro" column="intro" />
+		</association>
+	</resultMap>
+
+	<select id="selectAllByCategory" parameterType="Pic" resultMap="picResult">
+		select
+		c.id cid,
+		c.NAME cname,
+		c.display cdisplay,
+		c.intro cintro,
+		g.*
+		from
+		tb_Pic g inner join
+		tb_category c on c.id=g.categoryId where
+		g.categoryId=#{categoryId}
+	</select>
+
+	<select id="selectById" parameterType="Int" resultMap="picResult">
+		select *
+		from tb_Pic
+		where id=#{id}
+	</select>
+
+	<select id="selectCondiction" parameterType="Pic" resultMap="picResult">
+		select * from tb_Pic
+		<where>
+			<if test="name != null"> name=#{name} </if>
+		</where>
+		order by level desc
+		<trim prefix="WHERE" prefixOverrides="AND"></trim>
+	</select>
+
+	<select id="selectAll" parameterType="Pic" resultMap="picResult">
+		select *
+		from tb_Pic
+	</select>
+
+
+	<sql id="key">
+		<trim suffixOverrides=",">
+			<if test="id!=null"> id,</if>
+			<if test="name!=null"> name,</if>
+			<if test="imgs!=null"> imgs,</if>
+			<if test="categoryId!=null"> categoryId,</if>
+			<if test="display!=null"> display,</if>
+			<if test="level!=null"> level,</if>
+			<if test="intro!=null"> intro,</if>
+		</trim>
+	</sql>
+	<sql id="value">
+		<trim suffixOverrides=",">
+			<if test="id!=null"> #{id},</if>
+			<if test="name!=null"> #{name},</if>
+			<if test="imgs!=null"> #{imgs},</if>
+			<if test="categoryId!=null"> #{categoryId},</if>
+			<if test="display!=null"> #{display},</if>
+			<if test="level!=null"> #{level},</if>
+			<if test="intro!=null"> #{intro},</if>
+		</trim>
+	</sql>
+	<insert id="insert" parameterType="Pic">
+		insert into tb_Pic(
+		<include refid="key" />
+		)
+		values(
+		<include refid="value" />
+		)
+		<!-- values(#{id},#{categoryId}) -->
+	</insert>
+
+
+	<delete id="delete" parameterType="int">
+		delete from tb_Pic
+		where
+		id=#{id}
+	</delete>
+
+	<update id="updateCondiction" parameterType="Pic">
+		update tb_Pic
+		<set>
+			<trim suffixOverrides=",">
+				<if test="name != null"> name=#{name}, </if>
+				<if test="categoryId != null"> categoryId=#{categoryId},</if>
+				<if test="display != null"> display=#{display},</if>
+				<if test="level!= null"> level=#{level},</if>
+				<if test="intro!= null"> intro=#{intro},</if>
+			</trim>
+		</set>
+		where id=#{id}
+	</update>
+
+</mapper>

@@ -1,0 +1,147 @@
+@CHARSET "UTF-8";
+.piaochecked {
+width: 20px;
+height: 20px;
+float: left;
+cursor: pointer;
+margin-left: 10px;
+text-align: center;
+background-image: url(images/checkbox_01.gif);
+background-repeat: no-repeat;
+background-position: 0 0;
+}
+
+.on_check {
+background-position: 0 -21px;
+}
+.radioclass {
+opacity: 0;
+cursor: pointer;
+-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+filter: alpha(opacity=0);
+}
+
+
+
+
+/* Border styles */
+#table-3 thead, #table-3 tr {
+border-top-width: 1px;
+border-top-style: solid;
+border-top-color: rgba(0,0,0,0.2);
+}
+#table-3 {
+border-bottom-width: 1px;
+border-bottom-style: solid;
+border-bottom-color:rgba(0,0,0,0.2);
+}
+
+/* Padding and font style */
+#table-3 td, #table-3 th {
+padding: 5px 10px;
+font-size: 12px;
+font-family: Verdana;
+color: rgb(	47,79,79);
+}
+
+/* Alternating background colors */
+#table-3 tr:nth-child(even) {
+background: rgba(0,0,0,0.2);
+}
+#table-3 tr:nth-child(odd) {
+background: #EEE
+}
+
+
+
+
+.choseLanguage{
+width:80px;
+height:32px;
+float:left;
+text-align:right;
+margin-left:40px;
+margin-top:12px;
+float:left;
+font-size:14px;
+}
+.se{
+width:70px;
+height:32px;
+float:left;
+text-align:right;
+float:left;
+font-size:14px;
+}
+.trangle{
+width: 0;
+height: 0;
+margin-top:5px;
+margin-left:1px;
+border-left: 4px solid transparent;
+border-right: 4px solid transparent;
+border-top: 8px solid #FFFFFF;
+float:left;
+}
+.selectLanguage{
+background-color:#FFFFFF ;
+font-size:14px;
+color:#000000;
+font-weight:bold;
+border:0;
+border:none;
+appearance:none;
+-moz-appearance:none;
+-webkit-appearance:none;
+}
+.optionLangeuage{
+font-size:14px;
+color:#000000;
+font-weight:bold;
+}
+
+
+
+
+.aa{
+	font-size:40px ;font-family:黑体;
+	center;
+}
+
+.bb{
+	width:600px;height:200px;margin:0 auto;
+}
+
+cc.{
+	font-size:30px ;font-family:黑体;
+}
+
+.cover{//给见面加一个覆盖
+    position: fixed;
+    left:0px;
+    top:0px;
+    z-index: -1;
+    opacity: 0.6;
+    height: 100%;
+    width: 100%;
+    background: white;
+}
+
+.div-inline{ display:table;} 
+
+.bottom_footer {  
+       position: fixed; /*or前面的是absolute就可以用*/  
+       bottom: 0px;  
+} 
+
+.content {  
+      width: 300px;  
+      height: 100px;  
+}  
+.ver_hor_center {  
+      position: absolute;  
+      top: 100%;  
+      left: 50%;  
+      margin-left: -180px; /*要居中的div的宽度的一半*/  
+      margin-top: -100px; /*要居中的div的高度的一半*/  
+} 

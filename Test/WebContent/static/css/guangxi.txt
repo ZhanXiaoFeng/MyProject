@@ -1,0 +1,14 @@
+百色市（baise）
+河池市（hechi）
+柳州市（liuzhou）
+桂林市（guilin）
+崇左市（chongzuo）
+南宁市（nanning）
+来宾市（laibin）
+梧州市（wuzhou）
+贺州市（hezhou）
+防城港市（fangchenggang）
+钦州市（qinzhou）
+贵港市（guigang）
+玉林市（yulin）
+北海市（beihai）

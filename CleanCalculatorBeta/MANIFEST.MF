@@ -1,0 +1,4 @@
+Mainfest-version:1.0
+Mainfest-version:1.0
+Created-By:1.8.1_101(Sun Microsoft Inc.)
+Main-Class:SimpleCalculator(20180522)

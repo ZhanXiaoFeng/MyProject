@@ -1,0 +1,271 @@
+* {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+a,
+img {
+	border: 0;
+}
+
+body {
+	font: 12px/180% Arial, Helvetica, sans-serif, Arial, Helvetica, sans-serif;
+}
+
+
+/* b_map */
+
+.e_map_tags {
+	z-index: 1;
+	position: relative;
+	left:-200px;
+}
+
+.e_map_tags li {
+	width: 90px;
+	height: 25px;
+	z-index: 1;
+	position: absolute;
+	text-align: center;
+	padding-bottom: 8px;
+	display: block;
+	font: bold 14px/25px simsun, arial, sans-serif;
+	color: #fff;
+	top: 0px;
+	cursor: pointer;
+	left: 0px
+}
+
+.e_map_tags .m_nanning {
+	background: url(../img/map_tag1.png) no-repeat 0px 0px;
+	top: -277px;
+	left: 420px;
+}
+
+.e_map_tags .m_baise {
+	background: url(../img/map_tag2.png) no-repeat 0px 0px;
+	top: -363px;
+	left: 260px;
+}
+
+.e_map_tags .m_hechi {
+	background: url(../img/map_tag2.png) no-repeat 0px 0px;
+	top: -430px;
+	left: 358px;
+}
+
+.e_map_tags .m_liuzhou {
+	background: url(../img/map_tag1.png) no-repeat 0px 0px;
+	top: -399px;
+	left: 523px;
+}
+
+.e_map_tags .m_guilin {
+	background: url(../img/map_tag1.png) no-repeat 0px 0px;
+	top: -484px;
+	left: 583px;
+}
+
+.e_map_tags .m_chongzuo {
+	background: url(../img/map_tag2.png) no-repeat 0px 0px;
+	top: -232px;
+	left: 301px;
+}
+
+.e_map_tags .m_laibin {
+	background: url(../img/map_tag2.png) no-repeat 0px 0px;
+	top: -348px;
+	left: 423px;
+}
+
+.e_map_tags .m_wuzhou {
+	background: url(../img/map_tag1.png) no-repeat 0px 0px;
+	top: -279px;
+	left: 631px;
+}
+
+.e_map_tags .m_hezhou {
+	background: url(../img/map_tag1.png) no-repeat 0px 0px;
+	top: -361px;
+	left: 626px;
+}
+
+.e_map_tags .m_fangchenggang {
+	background: url(../img/map_tag2.png) no-repeat 0px 0px;
+	top: -162px;
+	left: 356px;
+}
+
+.e_map_tags .m_qinzhou {
+	background: url(../img/map_tag2.png) no-repeat 0px 0px;
+	top: -196px;
+	left: 411px;
+}
+
+.e_map_tags .m_guigang {
+	background: url(../img/map_tag1.png) no-repeat 0px 0px;
+	top: -291px;
+	left: 531px;
+}
+
+.e_map_tags .m_yulin {
+	background: url(../img/map_tag1.png) no-repeat 0px 0px;
+	top: -202px;
+	left: 562px;
+}
+
+.e_map_tags .m_beihai {
+	background: url(../img/map_tag1.png) no-repeat 0px 0px;
+	top: -106px;
+	left: 503px;
+}
+
+.e_map_tags li:hover {
+	background-position: 0px -38px
+}
+
+.e_map_tags li.hover,
+.e_map_tags .centers {
+	background-position: 0px -38px
+}
+
+.e_map_info {
+	z-index: 2;
+	position: relative;
+	left:-200px;
+}
+
+.e_map_info .m_content {
+	z-index: 1;
+	border: #ccc 1px solid;
+	position: absolute;
+	padding: 15px 20px;
+	background-color: #fff;
+	width: 280px;
+	display: block;
+	top: 0px;
+	left: 0px
+}
+
+.e_map_info .hide {
+	display: none;
+}
+
+.e_map_info .m_content i {
+	z-index: 1;
+	position: absolute;
+	width: 8px;
+	bottom: -8px;
+	display: block;
+	background: url(../img/map_idx1.png) no-repeat 0px 0px;
+	height: 8px;
+	overflow: hidden;
+	right: -1px;
+	_right: -2px
+}
+
+.e_map_info .m_content p {
+	font: 14px/22px simsun, arial, sans-serif
+}
+
+.e_map_info .m_nanning {
+	top: -508px;
+	left: 863px;
+}
+
+.e_map_info .m_baise {
+	top: -508px;
+	left: 863px;
+}
+
+.e_map_info .m_hechi {
+	top: -508px;
+	left: 863px;
+}
+
+.e_map_info .m_liuzhou {
+	top: -508px;
+	left: 863px;
+}
+
+.e_map_info .m_guilin {
+	top: -508px;
+	left: 863px;
+}
+
+.e_map_info .m_chongzuo {
+	top: -508px;
+	left: 863px;
+}
+
+.e_map_info .m_laibin {
+	top: -508px;
+	left: 863px;
+}
+
+.e_map_info .m_wuzhou {
+	top: -508px;
+	left: 863px;
+}
+
+.e_map_info .m_hezhou {
+	top: -508px;
+	left: 863px;
+}
+
+.e_map_info .m_fangchenggang {
+	top: -508px;
+	left: 863px;
+}
+
+.e_map_info .m_qinzhou {
+	top: -508px;
+	left: 863px;
+}
+
+.e_map_info .m_guigang {
+	top: -508px;
+	left: 863px;
+}
+
+.e_map_info .m_yulin {
+	top: -508px;
+	left: 863px;
+}
+
+.e_map_info .m_beihai {
+	top: -508px;
+	left: 863px;
+}
+
+
+/*m_content_side*/
+
+.m_content_side {
+	height: 1px;
+	width: 100%;
+	position: relative;
+}
+
+.m_content_side a {
+	position: absolute;
+	top: 0;
+	z-index: 2;
+	float: left;
+	width: 30px;
+	height: 30px;
+}
+
+.m_content_side a img {
+	width: 30px;
+	height: 30px;
+}
+
+.m_content_side a.m_left {
+	left: 0px;
+}
+
+.m_content_side a.m_right {
+	right: 0;
+}

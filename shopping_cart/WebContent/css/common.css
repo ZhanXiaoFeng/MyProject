@@ -1,0 +1,41 @@
+.myStyleA:link {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.myStyleA:hover {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.myStyleA:active {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.myStyleA:visited {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.putCartSuccessDIVStyle {
+    position: absolute;
+    display: none;
+    line-height: 35px;
+    text-align: center;
+    font-size: 16px;
+    background-color: red;
+    color: #FFFFFF;
+    width: 200px;
+}
+
+.putCartErrorDIVStyle {
+    position: absolute;
+    display: none;
+    line-height: 35px;
+    text-align: center;
+    font-size: 16px;
+    background-color: #000000;
+    color: #FFFFFF;
+    width: 200px;
+}

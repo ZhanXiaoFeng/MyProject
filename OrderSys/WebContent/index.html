@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>前台首页</title>
+
+<script type="application/x-javascript"> 
+	addEventListener("load", function()
+			{ setTimeout(hideURLbar, 0); 
+			}, false);
+	function hideURLbar(){
+		window.scrollTo(0,1); 
+		} 
+</script>
+
+<!-- bootstrap -->
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' media="all" />
+<!-- //bootstrap -->
+<!-- Custom Theme files -->
+<link href="css/waiterindex.css" rel='stylesheet' type='text/css' media="all" />
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/modernizr.custom.js"></script>
+<!--start-smoth-scrolling-->
+<!--webfonts-->
+<link
+	href='http://fonts.useso.com/css?family=Open+Sans:400italic,600italic,700italic,400,300,600,700,800'
+	rel='stylesheet' type='text/css'>
+<link href='http://fonts.useso.com/css?family=Niconne' rel='stylesheet'
+	type='text/css'>、
+<!--webfonts-->
+<link href="css/component.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+				});
+			});
+		</script>		
+</head>
+
+<body class="cbp-spmenu-push">
+
+	<!--contenter-->
+	<div class="header-section"><!-- 插入背景图 -->
+		<div class="container">
+			<div class="header-top">				
+				<div class="header-logo">
+					<a href="index.html"><img src="img/windex/logo.png" alt="" /></a>
+				    <!-- 插入返回首页的图片 -->
+				</div>			
+				<div class="clearfix"></div>
+				<!-- 顾客点菜链接 -->
+				<div class="header-grids">
+					<div class="col-md-4 header-grid-info">
+						<a href="single.html">
+							<div class="header-grid gray">
+								<div class="header-grid-img gray-grid">
+									<a href="deskServlet?op=findAllNotSelectedDesk&aim=openNotSelectedDesk.jsp">
+									<img src="img/windex/2.jpg" alt="tupian"></a>
+									<h3>MENU</h3>
+									<p>顾客点菜</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<!-- 顾客加菜链接 -->
+					<div class="col-md-4 header-grid-info">
+						<a href="single.html">
+							<div class="header-grid blue">
+								<div class="header-grid-img blue-grid">
+									<a href="deskServlet?op=findAllHaveSelectedDesk&aim=openHaveSelectedDesk.jsp">
+									<img src="img/windex/3.jpg" alt="tupian"></a>
+									<h3>ADDFOOD</h3>
+									<p>顾客加菜</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<!-- 结账链接 -->
+					<div class="col-md-4 header-grid-info">
+						<a href="single.html">
+							<div class="header-grid blue">
+								<div class="header-grid-img blue-grid">
+									<a href="deskServlet?op=findAllHaveSelectedDesk&aim=openNotPayDesk.jsp">
+									<img src="img/windex/1.jpg" alt="tupian"></a>
+									<h3>COUNT</h3>
+									<p>订单结账</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/contenter-->
+
+	<!--//copright-->
+	<div class="copy-right-section">
+		<div class="container">
+			<div >
+				<center><p>
+					Copyright &copy; 2017. OrderSys company All rights reserved.
+					 <a href="index.html" title="首页" target="_blank">首页</a>
+				</p></center>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
