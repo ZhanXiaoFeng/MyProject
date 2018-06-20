@@ -1,0 +1,12 @@
+/applicationContext.xml
+/controller/
+/dao/
+/db.properties
+/ehcache.xml
+/entity/
+/log4j.properties
+/messages.properties
+/mybatis-config.xml
+/service/
+/spring-servlet.xml
+/utils/
