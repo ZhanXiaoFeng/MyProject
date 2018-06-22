@@ -23,5 +23,4 @@ public class TestIntType {
 		i++;
 		System.out.println(i);
 	}
-
 }
