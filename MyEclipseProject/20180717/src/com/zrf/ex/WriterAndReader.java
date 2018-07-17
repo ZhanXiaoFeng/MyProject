@@ -17,6 +17,7 @@ public class WriterAndReader {
 				try {
 					bq.put(i);
 					System.out.println("Éú²úÖµ£º" + i);
+					Thread.sleep(i);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
