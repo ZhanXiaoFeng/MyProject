@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<student class="com.zrf.ex.bean.Student">
+	<name value="zhangsan"></name>
+	<height>165</height>
+	<sex>true</sex>
+</student>
