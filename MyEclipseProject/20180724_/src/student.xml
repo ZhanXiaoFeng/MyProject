@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<student class="com.gxsfdx.study.bean.Student">
+	<name type="java.lang.String"><value>zhangsan</value></name>
+	<!-- 这个是注释 165是文本节点 -->
+	<height><value>165</value><type>double</type></height>
+	<!-- <![CDATA[<html><xiaogou>阿黄</xiaogou></html>]]> -->
+	<sex type="boolean"><value>true</value></sex>
+</student>
